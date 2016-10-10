@@ -11,6 +11,7 @@ To update your local repo, use `git pull`.
 Before making any commits, please make sure your git client is configured with your name and Bitbucket email so it's easier to track who submitted what. To do this, run the following commands once you've pulled the repo:
 
 `git config user.email "emailhere"`
+
 `git config user.name "Your Name"`
 
 ### Branches ###
