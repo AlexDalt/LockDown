@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class UIController : MonoBehaviour {
 
-    public delegate void OnChooseRole(Role role);
-    public event OnChooseRole ChooseRoleEvent;
+    public delegate void ChooseRoleHandler(Role role);
+    public event ChooseRoleHandler OnChooseRole;
 
     public GameObject roleUI;
 
@@ -18,14 +18,14 @@ public class UIController : MonoBehaviour {
     }
 
     public void ChooseRoleInfiltrator() {
-        if (ChooseRoleEvent != null) {
-            ChooseRoleEvent(Role.Infiltrator);
+        if (OnChooseRole != null) {
+            OnChooseRole(Role.Infiltrator);
         }
     }
 
     public void ChooseRoleSecurity() {
-        if (ChooseRoleEvent != null) {
-            ChooseRoleEvent(Role.Security);
+        if (OnChooseRole != null) {
+            OnChooseRole(Role.Security);
         }
     }
 }

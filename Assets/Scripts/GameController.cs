@@ -4,10 +4,14 @@ using UnityEngine;
 
 public class GameController : MonoBehaviour {
 
-    public short infiltrator = -1;
-    public short security = -1;
+    private Dictionary<short, Role> roles = new Dictionary<short, Role>();
 
-    public bool HasRole(Role role) {
+    private short infiltrator = -1;
+    private short security = -1;
+
+    public NetworkController networkController;
+
+    public bool RoleClaimed(Role role) {
         switch (role) {
             case Role.Infiltrator:
                 return (infiltrator != -1);
@@ -18,14 +22,30 @@ public class GameController : MonoBehaviour {
         }
     }
 
-    public bool ClaimRole(Role role, short playerId) {
-        if (!HasRole(role)) {
+    public Role GetRole(short playerId) {
+        if (roles.ContainsKey(playerId)) {
+            return roles[playerId];
+        }
+        else {
+            return Role.None;
+        }
+    }
+
+    public bool ClaimRole(Role role, Player player) {
+
+        short playerId = player.playerControllerId;
+        Debug.Log(playerId + " is changing their role");
+        if (GetRole(playerId) == Role.None && !RoleClaimed(role)) {
             switch (role) {
                 case Role.Infiltrator:
                     infiltrator = playerId;
+                    roles.Add(playerId, role);
+                    networkController.ChangeRole(player, role);
                     return true;
                 case Role.Security:
                     security = playerId;
+                    roles.Add(playerId, role);
+                    networkController.ChangeRole(player, role);
                     return true;
                 default:
                     return false;
@@ -35,4 +55,6 @@ public class GameController : MonoBehaviour {
             return false;
         }
     }
+
+    //private void ChangePlayerRole()
 }
