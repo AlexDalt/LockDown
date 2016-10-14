@@ -4,12 +4,15 @@ using UnityEngine;
 
 public class GameController : MonoBehaviour {
 
-    private Dictionary<short, Role> roles = new Dictionary<short, Role>();
+    private Dictionary<int, Role> roles = new Dictionary<int, Role>();
 
-    private short infiltrator = -1;
-    private short security = -1;
+    private int infiltrator = -1;
+    private int security = -1;
 
     public NetworkController networkController;
+    public UIController uiController;
+
+    public List<Camera> cameras = new List<Camera>();
 
     public bool RoleClaimed(Role role) {
         switch (role) {
@@ -22,9 +25,9 @@ public class GameController : MonoBehaviour {
         }
     }
 
-    public Role GetRole(short playerId) {
-        if (roles.ContainsKey(playerId)) {
-            return roles[playerId];
+    public Role GetRole(int connectionId) {
+        if (roles.ContainsKey(connectionId)) {
+            return roles[connectionId];
         }
         else {
             return Role.None;
@@ -33,18 +36,18 @@ public class GameController : MonoBehaviour {
 
     public bool ClaimRole(Role role, Player player) {
 
-        short playerId = player.playerControllerId;
-        Debug.Log(playerId + " is changing their role");
-        if (GetRole(playerId) == Role.None && !RoleClaimed(role)) {
+        int connectionId = player.connectionToClient.connectionId;
+        Debug.Log(connectionId + " is changing their role");
+        if (GetRole(connectionId) == Role.None && !RoleClaimed(role)) {
             switch (role) {
                 case Role.Infiltrator:
-                    infiltrator = playerId;
-                    roles.Add(playerId, role);
+                    infiltrator = connectionId;
+                    roles.Add(connectionId, role);
                     networkController.ChangeRole(player, role);
                     return true;
                 case Role.Security:
-                    security = playerId;
-                    roles.Add(playerId, role);
+                    security = connectionId;
+                    roles.Add(connectionId, role);
                     networkController.ChangeRole(player, role);
                     return true;
                 default:

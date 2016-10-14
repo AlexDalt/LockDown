@@ -16,13 +16,10 @@ public class NetworkController : NetworkManager {
 
 	public override void OnServerAddPlayer(NetworkConnection conn, short playerControllerId) {
 
-        Debug.Log("Player " + playerControllerId + " has joined");
+        Debug.Log("Player " + playerControllerId + " has joined. Connection: "+conn.connectionId);
         GameObject player = Instantiate(playerPrefab, Vector3.zero, Quaternion.identity);
 
         PlayerLobby controller = player.GetComponent<PlayerLobby>();
-        controller.uiController = uiController;
-        controller.gameController = gameController;
-
         players.Add(controller);
 
         NetworkServer.AddPlayerForConnection(conn, player, playerControllerId);
@@ -50,9 +47,13 @@ public class NetworkController : NetworkManager {
                 return;
         }
 
-        NetworkServer.ReplacePlayerForConnection(player.connectionToClient, newPlayer, player.playerControllerId);
-        players[players.IndexOf(player)] = newPlayer.GetComponent<Player>();
+        NetworkConnection conn = player.connectionToClient;
+        short playerId = player.playerControllerId;
+
         Destroy(player.gameObject);
+        players[players.IndexOf(player)] = newPlayer.GetComponent<Player>();
+
+        NetworkServer.ReplacePlayerForConnection(player.connectionToClient, newPlayer, player.playerControllerId);
 
         Debug.Log("Role changed to " + role);
 
