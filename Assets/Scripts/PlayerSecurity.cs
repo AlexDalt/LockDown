@@ -33,6 +33,7 @@ public class PlayerSecurity : NetworkBehaviour {
 
     }
 
+   
     void OnDestroy() {
         if (isLocalPlayer) {
             uiController.ShowCameraUI(false);
