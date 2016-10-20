@@ -42,7 +42,7 @@ GameObject:
   - component: {fileID: 143663958613565916}
   - component: {fileID: 136543987025316434}
   m_Layer: 0
-  m_Name: PlayerInfiltrator
+  m_Name: TestInfiltrator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -67,7 +67,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1815391038337214}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 0.6766621, z: 0, w: 0.7362937}
   m_LocalPosition: {x: 0, y: 1.16, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -127,22 +127,22 @@ MonoBehaviour:
   m_SceneId:
     m_Value: 0
   m_AssetId:
-    i0: 221
-    i1: 96
-    i2: 49
-    i3: 160
-    i4: 41
-    i5: 195
-    i6: 20
-    i7: 212
-    i8: 42
-    i9: 104
-    i10: 118
-    i11: 237
-    i12: 68
-    i13: 211
-    i14: 220
-    i15: 170
+    i0: 210
+    i1: 15
+    i2: 220
+    i3: 245
+    i4: 231
+    i5: 134
+    i6: 139
+    i7: 36
+    i8: 138
+    i9: 233
+    i10: 238
+    i11: 105
+    i12: 35
+    i13: 233
+    i14: 254
+    i15: 102
   m_ServerOnly: 0
   m_LocalPlayerAuthority: 1
 --- !u!114 &114400450042215446
