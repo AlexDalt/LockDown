@@ -3,6 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public interface IInteractable {
-    string[] getOptions();
-    void interact(int option);
+    string[] GetOptions();
+    void Interact(int option);
 }
