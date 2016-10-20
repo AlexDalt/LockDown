@@ -14,11 +14,11 @@ public class PlayerSecurity : NetworkBehaviour {
     public override void OnStartLocalPlayer () {
         Init();
 
-        uiController.HideRoleSelector();
-        uiController.ShowCameraUI(true);
-        uiController.OnChooseCamera += ChooseCamera;
+        uiController.ShowRoleUI(false);
+        uiController.ShowSecurityUI(true);
+        //uiController.OnChooseCamera += ChooseCamera;
 
-        ChooseCamera(0);
+        uiController.ChangeCamera(0);
 	}
 
     public void Init() {
@@ -26,17 +26,10 @@ public class PlayerSecurity : NetworkBehaviour {
         uiController = gameController.uiController;
     }
 
-    void ChooseCamera(int id) {
-
-        Camera.main.gameObject.SetActive(false);
-        gameController.cameras[id].gameObject.SetActive(true);
-
-    }
-
     void OnDestroy() {
         if (isLocalPlayer) {
-            uiController.ShowCameraUI(false);
-            uiController.OnChooseCamera -= ChooseCamera;
+            uiController.ShowSecurityUI(false);
+            //uiController.OnChooseCamera -= ChooseCamera;
         }
     }
 	

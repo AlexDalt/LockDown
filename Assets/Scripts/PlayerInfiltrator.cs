@@ -10,7 +10,7 @@ public class PlayerInfiltrator : Player {
 
     public override void OnStartLocalPlayer() {
         Init();
-        uiController.HideRoleSelector();
+        uiController.ShowRoleUI(false);
     }
 
     public void Init() {

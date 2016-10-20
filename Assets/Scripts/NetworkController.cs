@@ -5,7 +5,6 @@ using UnityEngine.Networking;
 
 public class NetworkController : NetworkManager {
 
-    public UIController uiController;
     public GameController gameController;
 
     [Header("Player Prefabs")]
