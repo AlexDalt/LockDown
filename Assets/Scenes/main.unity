@@ -552,7 +552,7 @@ Canvas:
   m_RenderMode: 0
   m_Camera: {fileID: 0}
   m_PlaneDistance: 100
-  m_PixelPerfect: 0
+  m_PixelPerfect: 1
   m_ReceivesEvents: 1
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
@@ -1563,6 +1563,10 @@ Prefab:
         type: 2}
       propertyPath: m_Pivot.y
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1944147319627554, guid: 0d9d62dceceaa2f43b46850f22a63f4b, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0d9d62dceceaa2f43b46850f22a63f4b, type: 2}
@@ -3071,7 +3075,7 @@ Canvas:
   m_RenderMode: 0
   m_Camera: {fileID: 0}
   m_PlaneDistance: 100
-  m_PixelPerfect: 0
+  m_PixelPerfect: 1
   m_ReceivesEvents: 1
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
@@ -5268,6 +5272,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   roleUI: {fileID: 1023572193}
   cameraUI: {fileID: 196103255}
+  cameraOverlayPrefab: {fileID: 1944147319627554, guid: 0d9d62dceceaa2f43b46850f22a63f4b,
+    type: 2}
+  cameraGridUI: {fileID: 324433125}
+  mainUI: {fileID: 1080184750}
   cameras:
   - {fileID: 1468860324}
   - {fileID: 1709859516}

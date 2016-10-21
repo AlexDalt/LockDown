@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 224323800261564560}
   - component: {fileID: 222726906186845626}
   - component: {fileID: 114497959446842702}
+  - component: {fileID: 114881566042295042}
   m_Layer: 5
   m_Name: CameraOverlay
   m_TagString: Untagged
@@ -63,7 +64,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &114149733894242754
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -171,6 +172,19 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114881566042295042
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1944147319627554}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d71364ef97f680a46b5e62c3c8b91fea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nameText: {fileID: 1989325630629840}
+  noSignalText: {fileID: 1995688286954664}
 --- !u!114 &114987288509188094
 MonoBehaviour:
   m_ObjectHideFlags: 1
