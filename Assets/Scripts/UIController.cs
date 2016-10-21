@@ -41,6 +41,7 @@ public class UIController : MonoBehaviour {
         if (active) {
             //cameraUI.SetActive(true);
 
+            //if (true) {
             if (Display.displays.Length > 1) {
                 //If a second display is present, push camera grid to it
 
@@ -62,7 +63,7 @@ public class UIController : MonoBehaviour {
                     GameObject newOverlay = Instantiate(cameraOverlayPrefab, cameraGridUI.transform);
                     CameraOverlay newOverlayScript = newOverlay.GetComponent<CameraOverlay>();
 
-                    newOverlayScript.Init(i, cameras[i].name, 2, 2, i);
+                    newOverlayScript.Init(i, cameras[i].name, i, 2, 2);
                     newOverlayScript.OnClick += ChangeCamera;
 
                     cameraOverlays.Add(newOverlayScript);
