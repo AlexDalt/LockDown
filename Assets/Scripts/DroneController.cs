@@ -10,7 +10,6 @@ public class DroneController : MonoBehaviour {
 
     private UIController uiController;
     private GameController gameController;
-    private DroneController droneController;
 
     public float rotationSpeed = -1.5f;
     public float height = 0f;

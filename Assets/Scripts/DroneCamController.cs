@@ -7,22 +7,24 @@ using UnityEngine;
 /// </summary>
 
 public class DroneCamController : MonoBehaviour {
+    private DroneController droneController;
+
     public int minAngle = 0;
     public int maxAngle = 90;
+
 	public void Up()
 
     {
         if((gameObject.transform.localEulerAngles.x >= minAngle +1) && (gameObject.transform.localEulerAngles.x <= maxAngle))
-        {
             transform.Rotate(Vector3.left);
-        }
-        
+                
     }
     
     public void Down()
     {
-        if ((gameObject.transform.localEulerAngles.x >= minAngle) && (gameObject.transform.localEulerAngles.x <= maxAngle -1)) { 
+        if ((gameObject.transform.localEulerAngles.x >= minAngle) && (gameObject.transform.localEulerAngles.x <= maxAngle -1))  
             transform.Rotate(Vector3.right);
-        }
+        
     }
 }
+    
