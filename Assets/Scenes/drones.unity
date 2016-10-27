@@ -100,6 +100,7 @@ GameObject:
   m_Component:
   - component: {fileID: 29868856}
   - component: {fileID: 29868857}
+  - component: {fileID: 29868858}
   m_Layer: 0
   m_Name: DroneCamera1
   m_TagString: MainCamera
@@ -154,6 +155,17 @@ Camera:
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
   m_StereoMirrorMode: 0
+--- !u!114 &29868858
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 29868855}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d316c3da69d109543be50e57c6781ec1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &30852335
 GameObject:
   m_ObjectHideFlags: 0
@@ -3232,6 +3244,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   height: 0
   id: 2
+  droneCamController: {fileID: 29868858}
+  childCam: {fileID: 29868857}
 --- !u!1 &1141327403
 GameObject:
   m_ObjectHideFlags: 0
