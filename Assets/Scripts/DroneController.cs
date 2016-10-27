@@ -21,7 +21,7 @@ public class DroneController : MonoBehaviour {
 
     void Update() {
         
-            if (id == uiController.selectedCamera) { 
+            if (id == uiController.SelectedCamera) { 
             transform.Translate(Input.GetAxis("Horizontal") * 0.1f, 0, Input.GetAxis("Vertical") * 0.1f);
             if (Input.GetKey(KeyCode.Q)) 
                 transform.Rotate(0,rotationSpeed,0,Space.World);

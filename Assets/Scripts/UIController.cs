@@ -23,7 +23,7 @@ public class UIController : MonoBehaviour {
 
     public List<Camera> cameras = new List<Camera>();
 
-    public int selectedCamera = 0;
+    public int SelectedCamera { get; private set; }
 
     private List<CameraOverlay> cameraOverlays = new List<CameraOverlay>();
 
@@ -42,7 +42,7 @@ public class UIController : MonoBehaviour {
 
         if (active) {
             //cameraUI.SetActive(true);
-
+            SelectedCamera = 0;
             //if (true) {
             if (Display.displays.Length > 1) {
                 //If a second display is present, push camera grid to it
@@ -115,7 +115,7 @@ public class UIController : MonoBehaviour {
     }
 
     public void ChangeCamera(int id) {
-        selectedCamera = id;
+        SelectedCamera = id;
         MimicCamera(id);
 
         mainCameraOverlay.CameraName = cameras[id].name;
@@ -145,8 +145,9 @@ public class UIController : MonoBehaviour {
         }
     }
 
+    
     void Update() {
-        ChangeCamera(selectedCamera);
+        ChangeCamera(SelectedCamera);
 
     }
 }
