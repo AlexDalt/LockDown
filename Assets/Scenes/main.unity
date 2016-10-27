@@ -1919,6 +1919,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 583404d5b7f1a8b46b280ae5eea7e7b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uiController: {fileID: 1986478300}
   rotationSpeed: -1.5
   height: 0
   id: 2
@@ -5484,6 +5485,8 @@ MonoBehaviour:
   cameras:
   - {fileID: 1468860324}
   - {fileID: 1709859516}
+  - {fileID: 462094465}
+  selectedCamera: 0
 --- !u!1 &2043080316
 GameObject:
   m_ObjectHideFlags: 0
