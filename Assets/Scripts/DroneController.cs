@@ -8,7 +8,7 @@ using UnityEngine;
 /// </summary>
 public class DroneController : MonoBehaviour {
 
-    private UIController uiController;
+    public UIController uiController;
     private GameController gameController;
     private CameraOverlay mainCameraOverlay;
 
@@ -20,7 +20,8 @@ public class DroneController : MonoBehaviour {
 
 
     void Update() {
-        // { 
+        
+            if (id == uiController.selectedCamera) { 
             transform.Translate(Input.GetAxis("Horizontal") * 0.1f, 0, Input.GetAxis("Vertical") * 0.1f);
             if (Input.GetKey(KeyCode.Q)) 
                 transform.Rotate(0,rotationSpeed,0,Space.World);
@@ -29,7 +30,7 @@ public class DroneController : MonoBehaviour {
             if (Input.GetKey(KeyCode.R))
                 droneCamController.Up();
             if (Input.GetKey(KeyCode.F))
-                droneCamController.Down();    
-             //}
+                droneCamController.Down();
+        }
     }
 }

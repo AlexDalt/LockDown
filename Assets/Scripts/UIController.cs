@@ -23,6 +23,8 @@ public class UIController : MonoBehaviour {
 
     public List<Camera> cameras = new List<Camera>();
 
+    public int selectedCamera = 0;
+
     private List<CameraOverlay> cameraOverlays = new List<CameraOverlay>();
 
     public void ShowRoleUI(bool active) {
@@ -113,10 +115,15 @@ public class UIController : MonoBehaviour {
     }
 
     public void ChangeCamera(int id) {
-        Camera.main.transform.position = cameras[id].transform.position;
-        Camera.main.transform.rotation = cameras[id].transform.rotation;
+        selectedCamera = id;
+        MimicCamera(id);
 
         mainCameraOverlay.CameraName = cameras[id].name;
+    }
+
+    private void MimicCamera(int id) {
+        Camera.main.transform.position = cameras[id].transform.position;
+        Camera.main.transform.rotation = cameras[id].transform.rotation;
     }
 
     public void ChooseRoleInfiltrator() {
@@ -136,5 +143,10 @@ public class UIController : MonoBehaviour {
         if (OnChooseCamera != null) {
             OnChooseCamera(id);
         }
+    }
+
+    void Update() {
+        ChangeCamera(selectedCamera);
+
     }
 }
