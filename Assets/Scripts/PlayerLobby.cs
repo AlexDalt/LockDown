@@ -15,7 +15,7 @@ public class PlayerLobby : Player {
     public override void OnStartLocalPlayer() {
         Init();
         Debug.Log("Local Player Active");
-        uiController.ShowRoleSelector();
+        uiController.ShowRoleUI(true);
         uiController.OnChooseRole += ChooseRole;
     }
 
