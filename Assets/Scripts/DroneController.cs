@@ -10,6 +10,7 @@ public class DroneController : MonoBehaviour {
 
     private UIController uiController;
     private GameController gameController;
+    private CameraOverlay mainCameraOverlay;
 
     public float rotationSpeed = -1.5f;
     public float height = 0f;
@@ -19,16 +20,16 @@ public class DroneController : MonoBehaviour {
 
 
     void Update() {
-         //if (childCam.gameObject.activeSelf == true) { 
-        transform.Translate(Input.GetAxis("Horizontal") * 0.1f, 0, Input.GetAxis("Vertical") * 0.1f);
-        if (Input.GetKey(KeyCode.Q)) 
-            transform.Rotate(0,rotationSpeed,0,Space.World);
-        if (Input.GetKey(KeyCode.E))
-            transform.Rotate(0,-(rotationSpeed),0,Space.World);
-        if (Input.GetKey(KeyCode.R))
-            droneCamController.Up();
-        if (Input.GetKey(KeyCode.F))
-            droneCamController.Down();    
-      //   }
+        // { 
+            transform.Translate(Input.GetAxis("Horizontal") * 0.1f, 0, Input.GetAxis("Vertical") * 0.1f);
+            if (Input.GetKey(KeyCode.Q)) 
+                transform.Rotate(0,rotationSpeed,0,Space.World);
+            if (Input.GetKey(KeyCode.E))
+                transform.Rotate(0,-(rotationSpeed),0,Space.World);
+            if (Input.GetKey(KeyCode.R))
+                droneCamController.Up();
+            if (Input.GetKey(KeyCode.F))
+                droneCamController.Down();    
+             //}
     }
 }
