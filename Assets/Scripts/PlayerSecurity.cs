@@ -11,8 +11,9 @@ public class PlayerSecurity : NetworkBehaviour {
     public override void OnStartServer() {
         Init();
     }
-    public override void OnStartLocalPlayer () {
+    public override void OnStartLocalPlayer() {
         Init();
+		gameController.InitMapCam();
 
         uiController.ShowRoleUI(false);
         uiController.ShowSecurityUI(true);
