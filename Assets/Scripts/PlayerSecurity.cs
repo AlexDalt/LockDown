@@ -33,5 +33,25 @@ public class PlayerSecurity : NetworkBehaviour {
             //uiController.OnChooseCamera -= ChooseCamera;
         }
     }
+
+    void Update() {
+        if (uiController.IsDroneSelected) {
+            if (Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0) {
+                ((DroneController)uiController.SelectedCamera).Move();
+            }
+            if (Input.GetKey(KeyCode.Q)) {
+                ((DroneController)uiController.SelectedCamera).RotateLeft();
+            }
+            if (Input.GetKey(KeyCode.E)) {
+                ((DroneController)uiController.SelectedCamera).RotateRight();
+            }
+            if (Input.GetKey(KeyCode.R)) {
+                ((DroneController)uiController.SelectedCamera).LookUp();
+            }
+            if (Input.GetKey(KeyCode.F)) {
+                ((DroneController)uiController.SelectedCamera).LookDown();
+            }
+        }
+    }
 	
 }

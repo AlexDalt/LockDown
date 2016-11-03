@@ -9,8 +9,8 @@ public class NetworkController : NetworkManager {
 
     [Header("Player Prefabs")]
     public GameObject infiltratorPrefab;
-    public GameObject securityPrefab;
 
+    public GameObject securityPrefab;
     public List<Player> players = new List<Player>();
 
 	public override void OnServerAddPlayer(NetworkConnection conn, short playerControllerId) {
