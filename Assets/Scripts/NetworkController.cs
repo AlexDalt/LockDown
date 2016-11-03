@@ -38,7 +38,7 @@ public class NetworkController : NetworkManager {
         GameObject newPlayer;
         switch (role) {
             case Role.Infiltrator:
-                newPlayer = Instantiate(infiltratorPrefab);
+                newPlayer = Instantiate(infiltratorPrefab,Vector3.up, Quaternion.identity);
                 break;
             case Role.Security:
                 newPlayer = Instantiate(securityPrefab);

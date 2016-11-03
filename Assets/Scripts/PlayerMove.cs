@@ -46,6 +46,11 @@ public class PlayerMove : NetworkBehaviour {
             rotationY = ClampAngle(rotationY, minimumY, maximumY);
             Quaternion yQuaternion = Quaternion.AngleAxis(-rotationY, Vector3.right);
             Camera.main.transform.localRotation = originalRotation * yQuaternion;
+
+            if (Input.GetButtonDown("Space"))
+            {
+                controller.SimpleMove(Vector3.up);
+            }
         }
 
     }
