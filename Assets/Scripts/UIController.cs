@@ -56,7 +56,6 @@ public class UIController : MonoBehaviour {
         this.active = active;
         if (active) {
             //cameraUI.SetActive(true);
-            SelectedCameraID = 0;
             //if (true) {
             if (Display.displays.Length > 1) {
                 //If a second display is present, push camera grid to it
@@ -108,6 +107,8 @@ public class UIController : MonoBehaviour {
                     cameraOverlays.Add(newOverlayScript);
                 }
             }
+
+            ChangeCamera(0);
         }
         else {
             cameraUI.SetActive(false);
@@ -168,7 +169,7 @@ public class UIController : MonoBehaviour {
     
     void Update() {
         if (active) {
-            ChangeCamera(SelectedCameraID);
+            MimicCamera(SelectedCameraID);
         }
     }
 }
