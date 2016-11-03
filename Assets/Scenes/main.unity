@@ -1198,6 +1198,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d316c3da69d109543be50e57c6781ec1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  droneController: {fileID: 0}
   minAngle: 0
   maxAngle: 90
 --- !u!20 &462094465
@@ -1886,6 +1887,7 @@ GameObject:
   - component: {fileID: 541792731}
   - component: {fileID: 541792730}
   - component: {fileID: 541792729}
+  - component: {fileID: 541792732}
   - component: {fileID: 541792728}
   m_Layer: 0
   m_Name: Drone1
@@ -1919,12 +1921,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 583404d5b7f1a8b46b280ae5eea7e7b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  camera: {fileID: 462094465}
   uiController: {fileID: 1986478300}
   rotationSpeed: -1.5
   height: 0
   id: 2
-  droneCamController: {fileID: 462094464}
-  childCam: {fileID: 462094465}
+  minAngle: 0
+  maxAngle: 90
 --- !u!23 &541792729
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1975,6 +1978,38 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 541792726}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &541792732
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 541792726}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 372142912, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SceneId:
+    m_Value: 0
+  m_AssetId:
+    i0: 0
+    i1: 0
+    i2: 0
+    i3: 0
+    i4: 0
+    i5: 0
+    i6: 0
+    i7: 0
+    i8: 0
+    i9: 0
+    i10: 0
+    i11: 0
+    i12: 0
+    i13: 0
+    i14: 0
+    i15: 0
+  m_ServerOnly: 0
+  m_LocalPlayerAuthority: 0
 --- !u!1 &607446278
 GameObject:
   m_ObjectHideFlags: 0
@@ -2775,6 +2810,8 @@ GameObject:
   - component: {fileID: 842867845}
   - component: {fileID: 842867844}
   - component: {fileID: 842867843}
+  - component: {fileID: 842867846}
+  - component: {fileID: 842867847}
   m_Layer: 0
   m_Name: CamMountRoom1
   m_TagString: Untagged
@@ -2850,6 +2887,50 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 842867841}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &842867846
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 842867841}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 372142912, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SceneId:
+    m_Value: 0
+  m_AssetId:
+    i0: 11
+    i1: 1
+    i2: 160
+    i3: 238
+    i4: 197
+    i5: 249
+    i6: 136
+    i7: 228
+    i8: 218
+    i9: 33
+    i10: 137
+    i11: 247
+    i12: 147
+    i13: 134
+    i14: 23
+    i15: 86
+  m_ServerOnly: 0
+  m_LocalPlayerAuthority: 0
+--- !u!114 &842867847
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 842867841}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98efe1fe82ffe744e95d67b234419210, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  camera: {fileID: 1468860324}
 --- !u!1 &891385037
 GameObject:
   m_ObjectHideFlags: 0
@@ -3070,6 +3151,8 @@ GameObject:
   - component: {fileID: 965136160}
   - component: {fileID: 965136159}
   - component: {fileID: 965136158}
+  - component: {fileID: 965136162}
+  - component: {fileID: 965136161}
   m_Layer: 0
   m_Name: CamMountCorridor
   m_TagString: Untagged
@@ -3145,6 +3228,50 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 965136156}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &965136161
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 965136156}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98efe1fe82ffe744e95d67b234419210, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  camera: {fileID: 1709859516}
+--- !u!114 &965136162
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 965136156}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 372142912, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SceneId:
+    m_Value: 0
+  m_AssetId:
+    i0: 11
+    i1: 1
+    i2: 160
+    i3: 238
+    i4: 197
+    i5: 249
+    i6: 136
+    i7: 228
+    i8: 218
+    i9: 33
+    i10: 137
+    i11: 247
+    i12: 147
+    i13: 134
+    i14: 23
+    i15: 86
+  m_ServerOnly: 0
+  m_LocalPlayerAuthority: 0
 --- !u!1 &1023572193
 GameObject:
   m_ObjectHideFlags: 0
@@ -3351,6 +3478,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d316c3da69d109543be50e57c6781ec1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  droneController: {fileID: 0}
   minAngle: 0
   maxAngle: 90
 --- !u!20 &1108446751
@@ -4160,6 +4288,7 @@ GameObject:
   - component: {fileID: 1299134295}
   - component: {fileID: 1299134294}
   - component: {fileID: 1299134293}
+  - component: {fileID: 1299134297}
   - component: {fileID: 1299134292}
   m_Layer: 0
   m_Name: Drone2
@@ -4193,12 +4322,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 583404d5b7f1a8b46b280ae5eea7e7b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  camera: {fileID: 1108446751}
   uiController: {fileID: 1986478300}
   rotationSpeed: -1.5
   height: 0
   id: 3
-  droneCamController: {fileID: 1108446750}
-  childCam: {fileID: 1108446751}
+  minAngle: 0
+  maxAngle: 90
 --- !u!23 &1299134293
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -4249,6 +4379,38 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1299134290}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1299134297
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1299134290}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 372142912, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SceneId:
+    m_Value: 0
+  m_AssetId:
+    i0: 0
+    i1: 0
+    i2: 0
+    i3: 0
+    i4: 0
+    i5: 0
+    i6: 0
+    i7: 0
+    i8: 0
+    i9: 0
+    i10: 0
+    i11: 0
+    i12: 0
+    i13: 0
+    i14: 0
+    i15: 0
+  m_ServerOnly: 0
+  m_LocalPlayerAuthority: 0
 --- !u!1 &1374378137
 GameObject:
   m_ObjectHideFlags: 0
@@ -5661,10 +5823,10 @@ MonoBehaviour:
   cameraGridUI: {fileID: 324433125}
   mainUI: {fileID: 1080184750}
   cameras:
-  - {fileID: 1468860324}
-  - {fileID: 1709859516}
-  - {fileID: 462094465}
-  - {fileID: 1108446751}
+  - {fileID: 842867847}
+  - {fileID: 965136161}
+  - {fileID: 541792728}
+  - {fileID: 1299134292}
 --- !u!1 &2043080316
 GameObject:
   m_ObjectHideFlags: 0
