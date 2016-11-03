@@ -12,8 +12,6 @@ public class GameController : MonoBehaviour {
     public NetworkController networkController;
     public UIController uiController;
 
-    public List<Camera> cameras = new List<Camera>();
-
     public bool RoleClaimed(Role role) {
         switch (role) {
             case Role.Infiltrator:
