@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 
 public class GameController : MonoBehaviour {
 
@@ -55,6 +56,10 @@ public class GameController : MonoBehaviour {
         else {
             return false;
         }
+    }
+
+    public bool RequestControl(NetworkConnection conn, NetworkInstanceId objectId) {
+        return networkController.RequestControl(conn, objectId);
     }
 
     //private void ChangePlayerRole()

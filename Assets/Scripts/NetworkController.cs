@@ -58,4 +58,9 @@ public class NetworkController : NetworkManager {
 
     }
 
+    public bool RequestControl(NetworkConnection conn, NetworkInstanceId objectId) {
+        GameObject controllableObject = NetworkServer.FindLocalObject(objectId);
+        return controllableObject.GetComponent<NetworkIdentity>().AssignClientAuthority(conn);
+    }
+
 }

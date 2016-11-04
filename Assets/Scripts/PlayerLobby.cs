@@ -25,7 +25,9 @@ public class PlayerLobby : Player {
     }
 
     public void OnDestroy() {
-        uiController.OnChooseRole -= ChooseRole;
+        if (uiController) {
+            uiController.OnChooseRole -= ChooseRole;
+        }
     }
 
     public void ChooseRole(Role role) {
