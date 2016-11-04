@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 
+/// <summary>
+/// Object representing a player in the lobby
+/// </summary>
 public class PlayerLobby : Player {
 
     public GameController gameController;

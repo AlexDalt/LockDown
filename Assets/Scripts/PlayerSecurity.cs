@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 
+/// <summary>
+/// Object representing a Security player
+/// </summary>
 public class PlayerSecurity : NetworkBehaviour {
 
     private UIController uiController;
