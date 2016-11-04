@@ -1166,7 +1166,6 @@ GameObject:
   m_Component:
   - component: {fileID: 462094463}
   - component: {fileID: 462094465}
-  - component: {fileID: 462094464}
   m_Layer: 0
   m_Name: Drone 1
   m_TagString: MainCamera
@@ -1187,20 +1186,6 @@ Transform:
   m_Father: {fileID: 541792727}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &462094464
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 462094462}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d316c3da69d109543be50e57c6781ec1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  droneController: {fileID: 0}
-  minAngle: 0
-  maxAngle: 90
 --- !u!20 &462094465
 Camera:
   m_ObjectHideFlags: 0
@@ -1888,6 +1873,7 @@ GameObject:
   - component: {fileID: 541792730}
   - component: {fileID: 541792729}
   - component: {fileID: 541792732}
+  - component: {fileID: 541792733}
   - component: {fileID: 541792728}
   m_Layer: 0
   m_Name: Drone1
@@ -2009,7 +1995,27 @@ MonoBehaviour:
     i14: 0
     i15: 0
   m_ServerOnly: 0
-  m_LocalPlayerAuthority: 0
+  m_LocalPlayerAuthority: 1
+--- !u!114 &541792733
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 541792726}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1768714887, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_TransformSyncMode: 1
+  m_SendInterval: 0.1
+  m_SyncRotationAxis: 4
+  m_RotationSyncCompression: 0
+  m_SyncSpin: 0
+  m_MovementTheshold: 0.001
+  m_SnapThreshold: 5
+  m_InterpolateRotation: 1
+  m_InterpolateMovement: 1
 --- !u!1 &607446278
 GameObject:
   m_ObjectHideFlags: 0
@@ -3446,7 +3452,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1108446749}
   - component: {fileID: 1108446751}
-  - component: {fileID: 1108446750}
   m_Layer: 0
   m_Name: Drone 2
   m_TagString: MainCamera
@@ -3467,20 +3472,6 @@ Transform:
   m_Father: {fileID: 1299134291}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1108446750
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1108446748}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d316c3da69d109543be50e57c6781ec1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  droneController: {fileID: 0}
-  minAngle: 0
-  maxAngle: 90
 --- !u!20 &1108446751
 Camera:
   m_ObjectHideFlags: 0
@@ -4289,6 +4280,7 @@ GameObject:
   - component: {fileID: 1299134294}
   - component: {fileID: 1299134293}
   - component: {fileID: 1299134297}
+  - component: {fileID: 1299134296}
   - component: {fileID: 1299134292}
   m_Layer: 0
   m_Name: Drone2
@@ -4379,6 +4371,26 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1299134290}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1299134296
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1299134290}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1768714887, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_TransformSyncMode: 1
+  m_SendInterval: 0.1
+  m_SyncRotationAxis: 4
+  m_RotationSyncCompression: 0
+  m_SyncSpin: 0
+  m_MovementTheshold: 0.001
+  m_SnapThreshold: 5
+  m_InterpolateRotation: 1
+  m_InterpolateMovement: 1
 --- !u!114 &1299134297
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4410,7 +4422,7 @@ MonoBehaviour:
     i14: 0
     i15: 0
   m_ServerOnly: 0
-  m_LocalPlayerAuthority: 0
+  m_LocalPlayerAuthority: 1
 --- !u!1 &1374378137
 GameObject:
   m_ObjectHideFlags: 0
