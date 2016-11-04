@@ -21,7 +21,22 @@ public class UIController : MonoBehaviour {
 
     private CameraOverlay mainCameraOverlay;
 
-    public List<Camera> cameras = new List<Camera>();
+    public List<ViewController> cameras = new List<ViewController>();
+
+    private int selectedCameraID = 0;
+    public int SelectedCameraID {
+        get {
+            return selectedCameraID;
+        }
+        set {
+            selectedCameraID = value;
+            SelectedCamera = cameras[value];
+        }
+    }
+    public ViewController SelectedCamera { get; private set; }
+    public bool IsDroneSelected { get; private set; }
+
+    private bool active = false;
 
     private List<CameraOverlay> cameraOverlays = new List<CameraOverlay>();
 
@@ -38,9 +53,9 @@ public class UIController : MonoBehaviour {
     public void ShowSecurityUI(bool active) {
         Debug.Log("Screens detected: " + Display.displays.Length);
 
+        this.active = active;
         if (active) {
             //cameraUI.SetActive(true);
-
             //if (true) {
             if (Display.displays.Length > 1) {
                 //If a second display is present, push camera grid to it
@@ -56,9 +71,9 @@ public class UIController : MonoBehaviour {
                 mainCameraOverlay.Init("Main Camera", true);
 
                 for (int i = 0; i < cameras.Count; i++) {
-                    cameras[i].rect = new Rect((i % 2) * 0.5f, 0.5f - ((i / 2) * 0.5f), 0.5f, 0.5f);
-                    cameras[i].gameObject.SetActive(true);
-                    cameras[i].targetDisplay = 1;
+                    cameras[i].camera.rect = new Rect((i % 2) * 0.5f, 0.5f - ((i / 2) * 0.5f), 0.5f, 0.5f);
+                    cameras[i].camera.gameObject.SetActive(true);
+                    cameras[i].camera.targetDisplay = 1;
 
                     GameObject newOverlay = Instantiate(cameraOverlayPrefab, cameraGridUI.transform);
                     CameraOverlay newOverlayScript = newOverlay.GetComponent<CameraOverlay>();
@@ -80,8 +95,8 @@ public class UIController : MonoBehaviour {
                 mainCameraOverlay.Init("Main Camera", false);
 
                 for (int i = 0; i < cameras.Count; i++) {
-                    cameras[i].rect = new Rect(0.75f, 0.75f - (i * 0.25f), 0.25f, 0.25f);
-                    cameras[i].gameObject.SetActive(true);
+                    cameras[i].camera.rect = new Rect(0.75f, 0.75f - (i * 0.25f), 0.25f, 0.25f);
+                    cameras[i].camera.gameObject.SetActive(true);
 
                     GameObject newOverlay = Instantiate(cameraOverlayPrefab, cameraGridUI.transform);
                     CameraOverlay newOverlayScript = newOverlay.GetComponent<CameraOverlay>();
@@ -92,12 +107,14 @@ public class UIController : MonoBehaviour {
                     cameraOverlays.Add(newOverlayScript);
                 }
             }
+
+            ChangeCamera(0);
         }
         else {
             cameraUI.SetActive(false);
             Camera.main.GetComponent<Camera>().rect = new Rect(0, 0, 1, 1);
-            foreach (Camera camera in cameras) {
-                camera.gameObject.SetActive(false);
+            foreach (ViewController controller in cameras) {
+                controller.camera.gameObject.SetActive(false);
             }
         }
     }
@@ -113,10 +130,22 @@ public class UIController : MonoBehaviour {
     }
 
     public void ChangeCamera(int id) {
-        Camera.main.transform.position = cameras[id].transform.position;
-        Camera.main.transform.rotation = cameras[id].transform.rotation;
+        SelectedCameraID = id;
+        MimicCamera(id);
+
+        if (cameras[id].GetComponent<DroneController>()) {
+            IsDroneSelected = true;
+        }
+        else {
+            IsDroneSelected = false;
+        }
 
         mainCameraOverlay.CameraName = cameras[id].name;
+    }
+
+    private void MimicCamera(int id) {
+        Camera.main.transform.position = cameras[id].camera.transform.position;
+        Camera.main.transform.rotation = cameras[id].camera.transform.rotation;
     }
 
     public void ChooseRoleInfiltrator() {
@@ -135,6 +164,12 @@ public class UIController : MonoBehaviour {
         Debug.Log("Chose camera " + id);
         if (OnChooseCamera != null) {
             OnChooseCamera(id);
+        }
+    }
+    
+    void Update() {
+        if (active) {
+            MimicCamera(SelectedCameraID);
         }
     }
 }

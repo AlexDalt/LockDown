@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 
 public class GameController : MonoBehaviour {
 
@@ -59,6 +60,10 @@ public class GameController : MonoBehaviour {
         }
     }
 
+    public bool RequestControl(NetworkConnection conn, NetworkInstanceId objectId) {
+        return networkController.RequestControl(conn, objectId);
+    }
+    
 	/// <summary>
 	/// Initiates the map cam, so the map fills the screen
 	/// </summary>
