@@ -7,6 +7,9 @@ public class GameController : MonoBehaviour {
 
     private Dictionary<int, Role> roles = new Dictionary<int, Role>();
 
+    public int infiltratorScore = 0;
+    public int securityScore = 0;
+
     private int infiltrator = -1;
     private int security = -1;
 
@@ -116,4 +119,9 @@ public class GameController : MonoBehaviour {
 		}
 		return bounds;
 	}
+
+    public void ItemStolen(Item item) {
+        infiltratorScore += item.value;
+        securityScore -= item.value;
+    }
 }
