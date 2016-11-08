@@ -40,17 +40,6 @@ public class PlayerMove : NetworkBehaviour
             moveDirection.y -= gravity * Time.deltaTime;
             controller.Move(moveDirection * Time.deltaTime);
 
-            /*
-            //Get forward and back speeds, controller compatible.
-            Vector3 forward = transform.TransformDirection(Vector3.forward);
-            float forwardSpeed = speed * Input.GetAxis("Vertical");
-
-            Vector3 right = transform.TransformDirection(Vector3.right);
-            float strafeSpeed = speed * Input.GetAxis("Horizontal");
-
-            controller.SimpleMove(right * strafeSpeed);
-            controller.SimpleMove(forward * forwardSpeed);
-            */
 
             //X-rotation for player, camera moves as it is parented to the transform of the player
             transform.Rotate(0, Input.GetAxis("Mouse X") * xRotationSpeed, 0);
