@@ -12,8 +12,12 @@ public class NetworkController : NetworkManager {
 
     public GameObject securityPrefab;
     public List<Player> players = new List<Player>();
+    
+    public override void OnServerReady(NetworkConnection conn) {
+        NetworkServer.SetClientReady(conn);
+    }
 
-	public override void OnServerAddPlayer(NetworkConnection conn, short playerControllerId) {
+    public override void OnServerAddPlayer(NetworkConnection conn, short playerControllerId) {
 
         Debug.Log("Player " + playerControllerId + " has joined. Connection: "+conn.connectionId);
         GameObject player = Instantiate(playerPrefab, Vector3.zero, Quaternion.identity);

@@ -65,7 +65,7 @@ public class UIController : MonoBehaviour {
         if (active) {
             //cameraUI.SetActive(true);
             //if (true) {
-            if (Display.displays.Length > 1) {
+            if (Display.displays.Length > 1 && false) {
                 //If a second display is present, push camera grid to it
 
                 Display.displays[1].Activate();

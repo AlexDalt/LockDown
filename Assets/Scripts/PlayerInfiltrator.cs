@@ -10,6 +10,12 @@ public class PlayerInfiltrator : Player {
 
     private int interactableLayer;
 
+    private bool initialised;
+
+    public override void OnStartServer() {
+        Init();
+    }
+
     public override void OnStartLocalPlayer() {
         Init();
         uiController.ShowRoleUI(false);
@@ -17,15 +23,18 @@ public class PlayerInfiltrator : Player {
     }
 
     public void Init() {
-        gameController = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();
-        uiController = gameController.uiController;
-        interactableLayer = LayerMask.GetMask(new string[] { "Interactable" });
+        if (!initialised) {
+            gameController = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();
+            uiController = gameController.uiController;
+            interactableLayer = LayerMask.GetMask(new string[] { "Interactable" });
+        }
     }
 
     [Command]
     void CmdInteractWith(NetworkInstanceId netId, int option) {
-        gameController.InteractWith(netId, Role.Infiltrator, option);
+        Debug.Log("GameController is null: " + (gameController == null));
         Debug.Log("Choosing option " + option + " on object " + netId);
+        gameController.InteractWith(netId, Role.Infiltrator, option);
     }
 
     void Update() {
