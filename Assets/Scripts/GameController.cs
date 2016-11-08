@@ -7,7 +7,9 @@ public class GameController : NetworkBehaviour {
 
     private Dictionary<int, Role> roles = new Dictionary<int, Role>();
 
+    [SyncVar(hook = "OnInfiltratorScoreChange")]
     public int infiltratorScore = 0;
+    [SyncVar]
     public int securityScore = 0;
 
     private int infiltrator = -1;
@@ -138,14 +140,21 @@ public class GameController : NetworkBehaviour {
     /// <returns>Returns true if successful</returns>
     public bool InteractWith(NetworkInstanceId netId, Role role, int option) {
         if (isServer) {
+            Debug.Log("Player is interacting with object "+netId);
             GameObject gameObject = NetworkServer.FindLocalObject(netId);
             if (gameObject != null) {
-                IInteractable interactable = GetComponent<IInteractable>();
+                Debug.Log("Found object " + netId);
+                IInteractable interactable = gameObject.GetComponent<IInteractable>();
                 if (interactable != null) {
+                    Debug.Log("Found interactable on object " + netId);
                     return interactable.Interact(role, option);
                 }
             }
         }
         return false;
+    }
+
+    void OnInfiltratorScoreChange(int updated) {
+        uiController.UpdateInfiltratorScore(updated);
     }
 }

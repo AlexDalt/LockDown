@@ -13,12 +13,19 @@ public class PlayerInfiltrator : Player {
     public override void OnStartLocalPlayer() {
         Init();
         uiController.ShowRoleUI(false);
+        uiController.ShowInfiltratorUI(true);
     }
 
     public void Init() {
         gameController = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();
         uiController = gameController.uiController;
         interactableLayer = LayerMask.GetMask(new string[] { "Interactable" });
+    }
+
+    [Command]
+    void CmdInteractWith(NetworkInstanceId netId, int option) {
+        gameController.InteractWith(netId, Role.Infiltrator, option);
+        Debug.Log("Choosing option " + option + " on object " + netId);
     }
 
     void Update() {
@@ -33,9 +40,25 @@ public class PlayerInfiltrator : Player {
 
             RaycastHit hit;
 
+            //Detect interactable object
             Debug.DrawRay(Camera.main.transform.position, Camera.main.transform.forward * 2f);
             if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, 2, interactableLayer)) {
-                Debug.Log("Raycast hit: " + hit.collider.name);
+                IInteractable interactable = hit.collider.GetComponent<IInteractable>();
+                if (interactable != null) {
+                    string[] options = interactable.GetOptions(Role.Infiltrator);
+                    uiController.ShowInteractionText(options);
+                    if (options.Length > 0) {
+                        if (Input.GetMouseButtonDown(0)) {
+                            CmdInteractWith(hit.collider.GetComponent<NetworkIdentity>().netId, 0);
+                        }
+                    }
+                }
+                else {
+                    uiController.ShowInteractionText(null);
+                }
+            }
+            else {
+                uiController.ShowInteractionText(null);
             }
         }
     }

@@ -21,7 +21,7 @@ public class ItemCollectable : NetworkBehaviour, IInteractable {
     public string[] GetOptions(Role role) {
         if (role == Role.Infiltrator) {
             return new string[] {
-                "Steal (+$" + value + ")"
+                "Steal " + name + " (+$" + value + ")"
             };
         }
         else {
@@ -30,9 +30,10 @@ public class ItemCollectable : NetworkBehaviour, IInteractable {
     }
 
     public bool Interact(Role role, int option) {
+        Debug.Log("Being stolen");
         if (isServer) {
             gameController.ItemStolen(new Item(name, value));
-            Network.Destroy(gameObject);
+            NetworkServer.Destroy(gameObject);
             return true;
         }
         else {

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class UIController : MonoBehaviour {
 
@@ -13,6 +14,10 @@ public class UIController : MonoBehaviour {
 
     public GameObject roleUI;
     public GameObject cameraUI;
+    public GameObject infiltratorUI;
+
+    public GameObject interactionText;
+    public GameObject infiltratorScoreText;
 
     public GameObject cameraOverlayPrefab;
     public GameObject cameraGridUI;
@@ -44,6 +49,9 @@ public class UIController : MonoBehaviour {
         roleUI.SetActive(active);
     }
 
+    public void ShowInfiltratorUI(bool active) {
+        infiltratorUI.SetActive(active);
+    }
     /*public void SwapCameras() {
         cameras[i].rect = new Rect((i % 2) * 0.5f, 0.5f - ((i / 2) * 0.5f), 0.5f, 0.5f);
         cameras[i].gameObject.SetActive(true);
@@ -171,5 +179,19 @@ public class UIController : MonoBehaviour {
         if (active) {
             MimicCamera(SelectedCameraID);
         }
+    }
+
+    public void ShowInteractionText(string[] options) {
+        if (options != null && options.Length > 0) {
+            interactionText.SetActive(true);
+            interactionText.GetComponent<Text>().text = options[0];
+        }
+        else {
+            interactionText.SetActive(false);
+        }
+    }
+
+    public void UpdateInfiltratorScore(int value) {
+        infiltratorScoreText.GetComponent<Text>().text = "$" + value;
     }
 }
