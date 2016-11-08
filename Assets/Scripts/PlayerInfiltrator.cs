@@ -18,7 +18,7 @@ public class PlayerInfiltrator : Player {
             Camera.main.transform.position = transform.position;
             Camera.main.transform.rotation = transform.rotation;
             //Shift camera up to eyes
-            Camera.main.transform.Translate(0, 1.55f, 0);
+            Camera.main.transform.Translate(0, 1.0f, 0);
             Camera.main.transform.SetParent(this.transform);
         }
     }
