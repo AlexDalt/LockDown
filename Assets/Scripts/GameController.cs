@@ -3,12 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 
-public class GameController : MonoBehaviour {
+public class GameController : NetworkBehaviour {
 
     private Dictionary<int, Role> roles = new Dictionary<int, Role>();
 
     private int infiltrator = -1;
     private int security = -1;
+
+    [SyncVar(hook = "OnInfiltratorScoreChange")]
+    public int infiltratorScore = 0;
+    [SyncVar(hook = "OnSecurityScoreChange")]
+    public int securityScore = 0;
 
     public NetworkController networkController;
     public UIController uiController;
@@ -116,4 +121,45 @@ public class GameController : MonoBehaviour {
 		}
 		return bounds;
 	}
+
+    /// <summary>
+    /// Report an item as stolen and adjust the score appropriately
+    /// </summary>
+    /// <param name="item">Struct representing the item stolen</param>
+    public void ItemStolen(Item item) {
+        infiltratorScore += item.value;
+        securityScore -= item.value;
+    }
+
+    /// <summary>
+    /// Interact with a networked object
+    /// </summary>
+    /// <param name="netId">The netId of the object to interact with</param>
+    /// <param name="role">The role of the player performing the interaction</param>
+    /// <param name="option">The index of the option they wish to perform</param>
+    /// <returns>Returns true if successful</returns>
+    public bool InteractWith(NetworkInstanceId netId, Role role, int option) {
+        Debug.Log("Player is interacting with object "+netId);
+        if (isServer) {
+            GameObject gameObject = NetworkServer.FindLocalObject(netId);
+            if (gameObject != null) {
+                Debug.Log("Found object " + netId);
+                IInteractable interactable = gameObject.GetComponent<IInteractable>();
+                if (interactable != null) {
+                    Debug.Log("Found interactable on object " + netId);
+                    return interactable.Interact(role, option);
+                }
+            }
+        }
+        return false;
+    }
+
+    public void OnInfiltratorScoreChange(int updated) {
+        uiController.UpdateInfiltratorScore(updated);
+    }
+
+    public void OnSecurityScoreChange(int updated) {
+        //uiController.UpdateInfiltratorScore(updated);
+    }
+
 }

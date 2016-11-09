@@ -11,6 +11,11 @@ public class PlayerSecurity : NetworkBehaviour {
     private UIController uiController;
     private GameController gameController;
 
+    private bool initialised = false;
+
+    void Start() {
+        Init();
+    }
     public override void OnStartServer() {
         Init();
     }
@@ -26,8 +31,11 @@ public class PlayerSecurity : NetworkBehaviour {
 	}
 
     public void Init() {
-        gameController = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();
-        uiController = gameController.uiController;
+        if (!initialised) {
+            initialised = true;
+            gameController = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();
+            uiController = gameController.uiController;
+        }
     }
 
 
