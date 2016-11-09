@@ -1,12 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 
 /// <summary>
 /// Door class controls the movement of the door panels.
 /// The displacement variable is controlled via Mecanim (Unity's animation system)
 /// </summary>
-public class Door : MonoBehaviour, IInteractable {
+public class Door : NetworkBehaviour, IInteractable {
     public GameObject leftPanel;
     public GameObject rightPanel;
     public float displacement = 0;
@@ -17,10 +18,16 @@ public class Door : MonoBehaviour, IInteractable {
     Vector3 leftPanelOpenDisplacement;
     Vector3 rightPanelOpenDisplacement;
 
+    [SyncVar(hook = "OnOpenStateChange")]
     bool open;
     public bool Open {
-        get { return open; }
-        set { open = value; animator.SetBool("Open", value); }
+        get {
+            return open;
+        }
+        set {
+            open = value;
+            animator.SetBool("Open", value);
+        }
     }
     
     void Start () {
@@ -68,5 +75,9 @@ public class Door : MonoBehaviour, IInteractable {
                 return false;
         }
         return true;
+    }
+
+    private void OnOpenStateChange(bool state) {
+        Open = state;
     }
 }
