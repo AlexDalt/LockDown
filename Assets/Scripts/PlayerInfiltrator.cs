@@ -20,6 +20,16 @@ public class PlayerInfiltrator : Player {
         Init();
         uiController.ShowRoleUI(false);
         uiController.ShowInfiltratorUI(true);
+
+        if (isLocalPlayer)
+        {
+            //Move camera into object
+            Camera.main.transform.position = transform.position;
+            Camera.main.transform.rotation = transform.rotation;
+            //Shift camera up to eyes
+            Camera.main.transform.Translate(0, 1.0f, 0);
+            Camera.main.transform.SetParent(this.transform);
+        }
     }
 
     public void Init() {
@@ -40,13 +50,6 @@ public class PlayerInfiltrator : Player {
 
     void Update() {
         if (isLocalPlayer) {
-            transform.Translate(Input.GetAxis("Horizontal") * 0.1f, 0, Input.GetAxis("Vertical") * 0.1f);
-
-            //Move camera into object
-            Camera.main.transform.position = transform.position;
-            Camera.main.transform.rotation = transform.rotation;
-            //Shift camera up to eyes
-            Camera.main.transform.Translate(0, 1.55f, 0);
 
             RaycastHit hit;
 

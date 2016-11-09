@@ -40,9 +40,9 @@ GameObject:
   - component: {fileID: 114400450042215446}
   - component: {fileID: 114701175153549696}
   - component: {fileID: 143663958613565916}
-  - component: {fileID: 114696107373816524}
+  - component: {fileID: 136543987025316434}
   m_Layer: 0
-  m_Name: PlayerInfiltrator
+  m_Name: TestInfiltrator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -67,7 +67,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1815391038337214}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 0.6766621, z: 0, w: 0.7362937}
   m_LocalPosition: {x: 0, y: 1.16, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -127,22 +127,22 @@ MonoBehaviour:
   m_SceneId:
     m_Value: 0
   m_AssetId:
-    i0: 221
-    i1: 96
-    i2: 49
-    i3: 160
-    i4: 41
-    i5: 195
-    i6: 20
-    i7: 212
-    i8: 42
-    i9: 104
-    i10: 118
-    i11: 237
-    i12: 68
-    i13: 211
-    i14: 220
-    i15: 170
+    i0: 210
+    i1: 15
+    i2: 220
+    i3: 245
+    i4: 231
+    i5: 134
+    i6: 139
+    i7: 36
+    i8: 138
+    i9: 233
+    i10: 238
+    i11: 105
+    i12: 35
+    i13: 233
+    i14: 254
+    i15: 102
   m_ServerOnly: 0
   m_LocalPlayerAuthority: 1
 --- !u!114 &114400450042215446
@@ -157,31 +157,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_TransformSyncMode: 1
-  m_SendInterval: 0.09090909
-  m_SyncRotationAxis: 4
+  m_SendInterval: 0.05
+  m_SyncRotationAxis: 7
   m_RotationSyncCompression: 0
   m_SyncSpin: 0
   m_MovementTheshold: 0.001
   m_SnapThreshold: 5
   m_InterpolateRotation: 1
-  m_InterpolateMovement: 5
---- !u!114 &114696107373816524
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1815391038337214}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e1cee5947823fe84395cfe0ef3c8cf55, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 5
-  xRotationSpeed: 5
-  yRotationSpeed: 5
-  gravity: 50
-  minimumY: -60
-  maximumY: 60
+  m_InterpolateMovement: 1
 --- !u!114 &114701175153549696
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -193,6 +176,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e618e120ff57c394cb7578fef0c08928, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!136 &136543987025316434
+CapsuleCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1815391038337214}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 0
+  m_Radius: 0.4
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.9, z: 0}
 --- !u!143 &143663958613565916
 CharacterController:
   m_ObjectHideFlags: 1
@@ -201,12 +197,12 @@ CharacterController:
   m_GameObject: {fileID: 1815391038337214}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Height: 2
   m_Radius: 0.5
   m_SlopeLimit: 45
-  m_StepOffset: 0
+  m_StepOffset: 0.3
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: 1.55, z: 0}
