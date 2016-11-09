@@ -50,17 +50,19 @@ public class Door : MonoBehaviour, IInteractable {
 
     // IInteractable Method
     public string[] GetOptions(Role role) {
-        return new string[] { "Open", "Close" };
+        if (Open) {
+            return new string[] { "Close" };
+        }
+        else {
+            return new string[] { "Open" };
+        }
     }
 
     // IInteractable Method
     public bool Interact(Role role, int index) {
         switch(index) {
             case 0:
-                Open = true;
-                break;
-            case 1:
-                Open = false;
+                Open = !Open;
                 break;
             default:
                 return false;
