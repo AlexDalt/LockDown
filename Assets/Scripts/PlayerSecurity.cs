@@ -3,41 +3,83 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 
+/// <summary>
+/// Object representing a Security player
+/// </summary>
 public class PlayerSecurity : NetworkBehaviour {
 
     private UIController uiController;
     private GameController gameController;
 
+    private bool initialised = false;
+
+    void Start() {
+        Init();
+    }
     public override void OnStartServer() {
         Init();
     }
-    public override void OnStartLocalPlayer () {
+    public override void OnStartLocalPlayer() {
         Init();
+		gameController.InitMapCam();
 
-        uiController.HideRoleSelector();
-        uiController.ShowCameraUI(true);
-        uiController.OnChooseCamera += ChooseCamera;
+        uiController.ShowRoleUI(false);
+        uiController.ShowSecurityUI(true);
+        //uiController.OnChooseCamera += ChooseCamera;
 
-        ChooseCamera(0);
+        uiController.ChangeCamera(0);
 	}
 
     public void Init() {
-        gameController = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();
-        uiController = gameController.uiController;
+        if (!initialised) {
+            initialised = true;
+            gameController = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();
+            uiController = gameController.uiController;
+        }
     }
 
-    void ChooseCamera(int id) {
-
-        Camera.main.gameObject.SetActive(false);
-        gameController.cameras[id].gameObject.SetActive(true);
-
-    }
 
     void OnDestroy() {
-        if (isLocalPlayer) {
-            uiController.ShowCameraUI(false);
-            uiController.OnChooseCamera -= ChooseCamera;
+        if (isLocalPlayer && uiController) {
+            uiController.ShowSecurityUI(false);
+            //uiController.OnChooseCamera -= ChooseCamera;
         }
+    }
+
+    void Update() {
+        if (uiController.IsDroneSelected) {
+            if ((Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0) && AttemptControl(uiController.SelectedCamera)) {
+                ((DroneController)uiController.SelectedCamera).Move();
+            }
+            if (Input.GetKey(KeyCode.Q) && AttemptControl(uiController.SelectedCamera)) {
+                ((DroneController)uiController.SelectedCamera).RotateLeft();
+            }
+            if (Input.GetKey(KeyCode.E) && AttemptControl(uiController.SelectedCamera)) {
+                ((DroneController)uiController.SelectedCamera).RotateRight();
+            }
+            if (Input.GetKey(KeyCode.R) && AttemptControl(uiController.SelectedCamera)) {
+                ((DroneController)uiController.SelectedCamera).LookUp();
+            }
+            if (Input.GetKey(KeyCode.F) && AttemptControl(uiController.SelectedCamera)) {
+                ((DroneController)uiController.SelectedCamera).LookDown();
+            }
+        }
+    }
+
+    bool AttemptControl(ViewController controller) {
+        if (controller.hasAuthority) {
+            return true;
+        }
+        else {
+            Debug.Log("Requesting authority over " + controller.name);
+            CmdRequestControl(controller.netId);
+            return false;
+        }
+    }
+
+    [Command]
+    void CmdRequestControl(NetworkInstanceId objectId) {
+        gameController.RequestControl(connectionToClient, objectId);
     }
 	
 }

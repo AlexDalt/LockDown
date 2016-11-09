@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 
+/// <summary>
+/// Object representing a player in the lobby
+/// </summary>
 public class PlayerLobby : Player {
 
     public GameController gameController;
@@ -15,7 +18,7 @@ public class PlayerLobby : Player {
     public override void OnStartLocalPlayer() {
         Init();
         Debug.Log("Local Player Active");
-        uiController.ShowRoleSelector();
+        uiController.ShowRoleUI(true);
         uiController.OnChooseRole += ChooseRole;
     }
 
@@ -25,7 +28,9 @@ public class PlayerLobby : Player {
     }
 
     public void OnDestroy() {
-        uiController.OnChooseRole -= ChooseRole;
+        if (uiController) {
+            uiController.OnChooseRole -= ChooseRole;
+        }
     }
 
     public void ChooseRole(Role role) {

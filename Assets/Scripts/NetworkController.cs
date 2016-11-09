@@ -5,16 +5,19 @@ using UnityEngine.Networking;
 
 public class NetworkController : NetworkManager {
 
-    public UIController uiController;
     public GameController gameController;
 
     [Header("Player Prefabs")]
     public GameObject infiltratorPrefab;
+
     public GameObject securityPrefab;
-
     public List<Player> players = new List<Player>();
+    
+    public override void OnServerReady(NetworkConnection conn) {
+        NetworkServer.SetClientReady(conn);
+    }
 
-	public override void OnServerAddPlayer(NetworkConnection conn, short playerControllerId) {
+    public override void OnServerAddPlayer(NetworkConnection conn, short playerControllerId) {
 
         Debug.Log("Player " + playerControllerId + " has joined. Connection: "+conn.connectionId);
         GameObject player = Instantiate(playerPrefab, Vector3.zero, Quaternion.identity);
@@ -58,6 +61,11 @@ public class NetworkController : NetworkManager {
 
         Debug.Log("Role changed to " + role);
 
+    }
+
+    public bool RequestControl(NetworkConnection conn, NetworkInstanceId objectId) {
+        GameObject controllableObject = NetworkServer.FindLocalObject(objectId);
+        return controllableObject.GetComponent<NetworkIdentity>().AssignClientAuthority(conn);
     }
 
 }
