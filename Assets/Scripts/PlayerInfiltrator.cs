@@ -24,6 +24,7 @@ public class PlayerInfiltrator : Player {
 
     public void Init() {
         if (!initialised) {
+            initialised = true;
             gameController = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();
             uiController = gameController.uiController;
             interactableLayer = LayerMask.GetMask(new string[] { "Interactable" });
