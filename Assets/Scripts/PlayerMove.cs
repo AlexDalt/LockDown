@@ -11,6 +11,8 @@ public class PlayerMove : NetworkBehaviour
     public float yRotationSpeed = 3.0F; //Y-look sensitivity
     public float gravity = 10.0F;
 
+    private bool lockCursor = true;
+
     private Vector3 moveDirection = Vector3.zero;
 
     //Y-axis look limits
@@ -29,6 +31,21 @@ public class PlayerMove : NetworkBehaviour
     {
         if (isLocalPlayer)
         {
+
+            if (Input.GetKeyDown(KeyCode.Escape)) {
+                lockCursor = !lockCursor;
+            }
+
+            if (lockCursor) {
+                Cursor.lockState = CursorLockMode.Locked;
+                Cursor.visible = false;
+            }
+            else {
+                Cursor.lockState = CursorLockMode.None;
+                Cursor.visible = true;
+            }
+
+
             //Movement code: From Unity Scripting Manual
             CharacterController controller = GetComponent<CharacterController>();
 
