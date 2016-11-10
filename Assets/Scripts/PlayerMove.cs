@@ -60,10 +60,10 @@ public class PlayerMove : NetworkBehaviour
 
 
             //X-rotation for player, camera moves as it is parented to the transform of the player
-            transform.Rotate(0, Input.GetAxis("Mouse X") * xRotationSpeed, 0);
+            transform.Rotate(0, Input.GetAxis("Mouse X") * xRotationSpeed * Time.deltaTime, 0);
 
             //Y-rotation for main camera
-            rotationY += Input.GetAxis("Mouse Y") * yRotationSpeed;
+            rotationY += Input.GetAxis("Mouse Y") * yRotationSpeed * Time.deltaTime;
             rotationY = ClampAngle(rotationY, minimumY, maximumY);
             Quaternion yQuaternion = Quaternion.AngleAxis(-rotationY, Vector3.right);
             Camera.main.transform.localRotation = originalRotation * yQuaternion;
