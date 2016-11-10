@@ -11,6 +11,7 @@ public class PlayerMove : NetworkBehaviour
     public float yRotationSpeed = 3.0F; //Y-look sensitivity
     public float gravity = 10.0F;
 
+
     private bool lockCursor = true;
 
     private Vector3 moveDirection = Vector3.zero;
@@ -59,10 +60,10 @@ public class PlayerMove : NetworkBehaviour
 
 
             //X-rotation for player, camera moves as it is parented to the transform of the player
-            transform.Rotate(0, Input.GetAxis("Mouse X") * xRotationSpeed, 0);
+            transform.Rotate(0, Input.GetAxis("Mouse X") * xRotationSpeed * Time.deltaTime, 0);
 
             //Y-rotation for main camera
-            rotationY += Input.GetAxis("Mouse Y") * yRotationSpeed;
+            rotationY += Input.GetAxis("Mouse Y") * yRotationSpeed * Time.deltaTime;
             rotationY = ClampAngle(rotationY, minimumY, maximumY);
             Quaternion yQuaternion = Quaternion.AngleAxis(-rotationY, Vector3.right);
             Camera.main.transform.localRotation = originalRotation * yQuaternion;

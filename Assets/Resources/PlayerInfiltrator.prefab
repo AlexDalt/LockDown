@@ -177,8 +177,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
-  xRotationSpeed: 5
-  yRotationSpeed: 5
+  xRotationSpeed: 150
+  yRotationSpeed: 150
   gravity: 50
   minimumY: -60
   maximumY: 60

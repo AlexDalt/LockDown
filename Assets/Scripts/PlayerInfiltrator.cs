@@ -11,6 +11,8 @@ public class PlayerInfiltrator : Player {
     private int interactableLayer;
 
     private bool initialised;
+    private float debounce = 0f;
+
 
     public override void OnStartServer() {
         Init();
@@ -61,8 +63,10 @@ public class PlayerInfiltrator : Player {
                     string[] options = interactable.GetOptions(Role.Infiltrator);
                     uiController.ShowInteractionText(options);
                     if (options.Length > 0) {
-                        if (Input.GetMouseButtonDown(0)) {
+
+                        if (Input.GetAxis("Fire1") > 0 && debounce < (Time.time - 0.25f)) {
                             CmdInteractWith(hit.collider.GetComponent<NetworkIdentity>().netId, 0);
+                            debounce = Time.time;
                         }
                     }
                 }
