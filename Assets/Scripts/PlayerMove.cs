@@ -11,6 +11,7 @@ public class PlayerMove : NetworkBehaviour
     public float yRotationSpeed = 3.0F; //Y-look sensitivity
     public float gravity = 10.0F;
 
+
     private bool lockCursor = true;
 
     private Vector3 moveDirection = Vector3.zero;
