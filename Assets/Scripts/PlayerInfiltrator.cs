@@ -61,7 +61,7 @@ public class PlayerInfiltrator : Player {
                     string[] options = interactable.GetOptions(Role.Infiltrator);
                     uiController.ShowInteractionText(options);
                     if (options.Length > 0) {
-                        if (Input.GetMouseButtonDown(0)) {
+                        if (Input.GetAxis("Fire1") > 0) {
                             CmdInteractWith(hit.collider.GetComponent<NetworkIdentity>().netId, 0);
                         }
                     }
