@@ -1,6 +1,9 @@
-# Impenetrable (Working title) #
+# LockDown #
 
-A game about penetration.
+## An Asymmetric VR Multiplayer Game ##
+
+LockDown, pits a wily infiltrator (in a VR headset) against a team of security "professionals". The infiltrator is attempting to evade the security team and steal as much corporate loot as possible, all the while searching for their ultimate prize. Upon "recovering" the final item the infiltrator has to escape with his life (and booty) intact.
+
 
 ## Using Git Flow ##
 
